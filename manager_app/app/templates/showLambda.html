@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.0/jquery.min.js"></script>
+    <script src="https://cdn.highcharts.com.cn/highcharts/highcharts.js"></script>
+    <script type="javascript" src="js/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+</head>
+
+<body style=" height: 100%; margin: 0; background-repeat: no-repeat; background-attachment: fixed; background-image: linear-gradient(#99ffae,#ffe374)">
+    <ul class="nav nav-pills" style="font-size: 25px; background-color: #a584ff">
+        <li role="presentation"><a href="{{url_for('main')}}" style="color: white"><strong>Home</strong></a></li>
+        <li role="presentation"><a href="{{url_for('display_charts')}}" style="color: white"><strong>Chart</strong></a></li>
+        <li role="presentation" class="active"><a href="{{url_for('display_lambda')}}" style="color: white"><strong>ShowLambda</strong></a></li>
+        <li role="presentation"><a href="{{url_for('data_clear_form')}}" style="color: white"><strong>DeleteData</strong></a></li>
+        <li role="presentation"><a href="{{url_for('clear_cache_form')}}" style="color: white"><strong>ClearCache</strong></a></li>
+    </ul>
+
+
+    <p class="container text-center" style="font-size:80px; font-family: Arial; color: #473eff"><strong>Lambda Chart</strong></p><br>
+
+
+    <div class="col-md-6 " id="container1" style="max-width:800px;height:600px; margin-left: 100px"></div>
+        <script>
+            function decodeJSON(time_stamp) {
+            var time = new DOMParser().parseFromString(time_stamp, "text/html");
+            return time.documentElement.textContent;
+      }
+            var time_stamps = JSON.parse(decodeJSON("{{ time_stamps }}"));
+
+            var content1 = JSON.parse("{{ content1 }}");
+            var config1 = {
+                title:{
+                    text: 'Error Number'
+                },
+                xAxis:{
+                    title:{
+                        text: 'Time'
+                    },
+                    categories:time_stamps
+                },
+                yAxis:{
+                    title:{
+                        text: 'Number'
+                    },
+                },
+                series:[
+                    {
+                        name:'Error',
+                        data:content1
+                    }
+                ]
+            }
+            var chart1 = Highcharts.chart("container1",config1)
+        </script>
+
+        <div class="col-md-6" id="container2" style="max-width:800px;height:600px; margin-left:100px"></div>
+        <script>
+            var content2 = JSON.parse("{{ content2 }}");
+            var config2 = {
+                title:{
+                    text: 'Request Duration'
+                },
+                xAxis:{
+                    title:{
+                        text: 'Time'
+                    },
+                    categories:time_stamps
+                },
+                yAxis:{
+                    title:{
+                        text: 'Time(ms)'
+                    },
+                },
+                series:[
+                    {
+                        name:'Duration',
+                        data:content2
+                    }
+                ]
+            }
+            var chart2 = Highcharts.chart("container2",config2)
+        </script>
+
+
+</body>
+</html>

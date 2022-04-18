@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+</head>
+
+<body style=" height: 100%; margin: 0; background-repeat: no-repeat; background-attachment: fixed; background-image: linear-gradient(#99ffae,#ffe374)">
+    <script src="https://fastly.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js" integrity="sha384-nvAa0+6Qg9clwYCGGPpDQLVpLNn0fRaROjHqs13t4Ggj3Ez50XnGQqc/r8MhnRDZ" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous"></script>
+
+    <ul class="nav nav-pills" style="font-size: 25px; background-color: #a584ff">
+        <li role="presentation" class="active"><a href="{{url_for('main')}}" style="color: white"><strong>Home</strong></a></li>
+        <li role="presentation"><a href="{{url_for('display_charts')}}" style="color: white"><strong>Chart</strong></a></li>
+        <li role="presentation"><a href="{{url_for('display_lambda')}}" style="color: white"><strong>ShowLambda</strong></a></li>
+        <li role="presentation"><a href="{{url_for('data_clear_form')}}" style="color: white"><strong>DeleteData</strong></a></li>
+        <li role="presentation"><a href="{{url_for('clear_cache_form')}}" style="color: white"><strong>ClearCache</strong></a></li>
+    </ul>
+
+    <div class="container text-center" style="font-size:90px; font-family: Arial; color: #473eff">
+        <p><strong>Menu</strong></p>
+    </div>
+
+    <div class="container" >
+        <div class="row">
+            <div class="col-md-9 col-md-offset-3">
+                <ul style="font-size: 40px; color: #d76eff">
+                    <li style="margin-top: 4%"><a href="{{url_for('display_charts')}}"><strong>Charts</strong></a></li>
+                    <li style="margin-top: 4%"><a href="{{url_for('display_lambda')}}"><strong>Display Lambda</strong></a></li>
+                    <li style="margin-top: 4%"><a href="{{url_for('data_clear_form')}}"><strong>Deleting all application data</strong></a></li>
+                    <li style="margin-top: 4%"><a href="{{url_for('clear_cache_form')}}"><strong>Clear memcache data</strong></a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+
+</body>
+</html>

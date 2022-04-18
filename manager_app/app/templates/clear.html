@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+</head>
+<body style=" height: 100%; margin: 0; background-repeat: no-repeat; background-attachment: fixed; background-image: linear-gradient(#99ffae,#ffe374)">
+    <script src="https://fastly.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js" integrity="sha384-nvAa0+6Qg9clwYCGGPpDQLVpLNn0fRaROjHqs13t4Ggj3Ez50XnGQqc/r8MhnRDZ" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous"></script>
+
+    <ul class="nav nav-pills" style="font-size: 25px; background-color: #a584ff">
+        <li role="presentation"><a href="{{url_for('main')}}" style="color: white"><strong>Home</strong></a></li>
+        <li role="presentation"><a href="{{url_for('display_charts')}}" style="color: white"><strong>Chart</strong></a></li>
+        <li role="presentation"><a href="{{url_for('display_lambda')}}" style="color: white"><strong>ShowLambda</strong></a></li>
+        <li role="presentation"><a href="{{url_for('data_clear_form')}}" style="color: white"><strong>DeleteData</strong></a></li>
+        <li role="presentation" class="active"><a href="{{url_for('clear_cache_form')}}" style="color: white"><strong>ClearCache</strong></a></li>
+    </ul>
+
+    <div class="container text-center" style="font-size:80px; font-family: Arial; color: #473eff">
+        <p><strong>Clear Memcache Data</strong></p><br>
+    </div>
+
+    <div class="container text-center" style="font-size:40px; font-family: Arial; color: #473eff">
+        <b>Please click this button to clear all contents in mem-cache</b><br>
+    </div>
+
+    <div class="col-md-4 col-md-offset-4">
+        <form id="clear_form" action="{{url_for('clear_cache')}}" method="post">
+            <button type="submit" class="col-md-2 col-md-offset-5 btn btn-default" style="background-color: #ff4e4e; font-size: 30px; margin-top: 4%; width: 20%"><strong>Clear</strong></button>
+        </form>
+    </div>
+
+</body>
+</html>

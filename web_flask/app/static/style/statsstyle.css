@@ -1,0 +1,30 @@
+html{
+    background-color: #e9edf0;
+}
+
+h1{
+    font-family: Arial;
+    font-size: 300%;
+    color: #473eff;
+    text-align: center;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+table,th,td {
+    border: 1px solid;
+    text-align: center;
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: #c2eeff;
+}
+
+#back_button{
+    font-size: 150%;
+    background-color: #4eff9f;
+}

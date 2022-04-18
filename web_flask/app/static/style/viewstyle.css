@@ -1,0 +1,27 @@
+html{
+    background-color: #A3DEFF;
+}
+
+h1{
+    font-family: Arial;
+    font-size: 300%;
+    color: #473eff;
+    text-align: center;
+}
+
+#back_button{
+    font-size: 150%;
+    background-color: #4eff9f;
+}
+
+h2{
+    font-family: Arial;
+    font-size: 150%;
+    text-align: left;
+}
+
+#image{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}

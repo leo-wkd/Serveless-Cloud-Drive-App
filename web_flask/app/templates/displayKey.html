@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Title</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+    <style>
+    .container1{
+            height: 100%;
+            width: 15%;
+            background-color: #ffc28e;
+        }
+        #keyList{
+            font-size: 30px;
+            list-style-type: none;
+        }
+        #keyList li{
+            margin-top: 0px;
+        }
+         #keyList li:hover{
+            color: red;
+        }
+    </style>
+</head>
+
+<body style=" height: 100%; margin: 0; background-repeat: no-repeat; background-attachment: fixed; background-image: linear-gradient(#d9b0ff,#88b1ff)">
+<script src="https://fastly.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js" integrity="sha384-nvAa0+6Qg9clwYCGGPpDQLVpLNn0fRaROjHqs13t4Ggj3Ez50XnGQqc/r8MhnRDZ" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous"></script>
+
+    <ul class="nav nav-pills" style="font-size: 25px; background-color: #cb12ff">
+      <li role="presentation"><a href="{{url_for('main')}}" style="color: white"><strong>Home</strong></a></li>
+      <li role="presentation"><a href="{{url_for('upload_image_form')}}" style="color: white"><strong>Upload</strong></a></li>
+      <li role="presentation"><a href="{{url_for('search_image_form')}}" style="color: white"><strong>Search</strong></a></li>
+      <li role="presentation"><a href="{{url_for('delete_image_form')}}" style="color: white"><strong>Delete</strong></a></li>
+      <li role="presentation" class="active"><a href="{{url_for('display_image_name')}}" style="color: white"><strong>Display</strong></a></li>
+      <li role="presentation"><a href="{{url_for('textract_form')}}" style="color: white"><strong>ExtractText</strong></a></li>
+      <li role="presentation"><a href="{{url_for('celebrity_form')}}" style="color: white"><strong>FindCelebrity</strong></a></li>
+      <li role="presentation"><a href="{{url_for('facial_form')}}" style="color: white"><strong>FacialAnalysis</strong></a></li>
+    </ul>
+    <div class="container text-center" style="font-size:60px; font-family: Arial; color: #473eff">
+        <p><strong>Display All Key</strong></p>
+    </div>
+
+    <div class="container1 col-md-6 col-md-offset-5">
+        <p style="text-align: center; font-size: 40px"><strong>Menu</strong></p>
+        <ul id="keyList"></ul>
+    </div>
+
+
+
+    <div class="col-md-8 col-md-offset-2" id="container" style="max-width:800px;height:400px"></div>
+    <script type=text/javascript>
+      function decodeJSON(time_stamp) {
+        var time = new DOMParser().parseFromString(time_stamp, "text/html");
+        return time.documentElement.textContent;
+      }
+
+      var content1 = {{content1|tojson|safe}};   //["1", "avc", "!#@"]---> {"key": "avc"}
+      //var content1 = JSON.parse("{{content}}");
+      console.log(content1)
+      let list = document.getElementById("keyList");
+
+      content1.forEach((item) => {
+        let li = document.createElement("li");
+        li.innerText = item;
+        list.appendChild(li);
+      });
+      
+
+      window.onload=function(){
+        var newList = document.getElementById('keyList').getElementsByTagName('li');
+        for(let i=0;i<newList.length;i++) {
+          newList[i].onclick=myFunction;
+        }
+      }
+
+      function myFunction()
+      {
+          var jsonData = JSON.stringify(this.innerHTML);
+          var nData = jsonData.replace(/\"/g, "");
+          //console.log(typeof jsonData);
+          let xhr = new XMLHttpRequest();
+          xhr.onreadystatechange = function() {
+              if (xhr.readyState == XMLHttpRequest.DONE) {
+                  var base64data = xhr.responseText
+                  var image = new Image();
+                  image.src = "data:image/jpg;base64," + base64data;
+                  //var myWindow = window.open("", "MsgWindow", "width=800,height=600");
+                  //myWindow.document.write("Key"+jsonData+"<br>"+image.outerHTML);
+
+                  var myWindow = window.open("", "MsgWindow");
+                  myWindow.document.write('<html>'+'<style>'+"html{background-color: #a4ffbc}" +
+                      "p{text-align: center; font-size: 40px} "+".pic{display: flex; flex-wrap: wrap; align-items: center; justify-content: center}"+'</style>'+'</head>'+'<body>')
+                  myWindow.document.write("<p>"+"Key "+ nData +"</p>"+"<br>"+"<div id='img' class='pic'>"+image.outerHTML+"</div>");
+                  myWindow.document.write('</body></html>');
+              }
+          }
+          xhr.open("POST", "https://y2u58jm567.execute-api.us-east-1.amazonaws.com/dev/api/show", true);
+          
+          xhr.setRequestHeader('Access-Control-Allow-Origin', '*');
+          xhr.setRequestHeader('Access-Control-Allow-Credentials', 'true');
+          xhr.setRequestHeader("Content-Type","application/json");
+          
+          xhr.send(jsonData);
+      }
+
+    </script>
+
+</body>
+</html>

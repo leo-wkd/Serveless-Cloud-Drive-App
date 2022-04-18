@@ -1,0 +1,27 @@
+html{
+    background-color: #A3DEFF;
+}
+
+h1{
+    font-family: Arial;
+    font-size: 400%;
+    color: #473eff;
+    text-align: center;
+    margin-bottom: 0;
+}
+
+ul{
+    padding-left: 40%;
+    color: #b874ff;
+}
+
+ul li{
+    font-size: 200%;
+    padding-top: 5%;
+}
+
+a{
+    text-decoration: none;
+    color: #ff1ae5;
+    font-family: Arial;
+}

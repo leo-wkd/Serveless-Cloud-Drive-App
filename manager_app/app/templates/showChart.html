@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.0/jquery.min.js"></script>
+    <script src="https://cdn.highcharts.com.cn/highcharts/highcharts.js"></script>
+    <script type="javascript" src="js/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+</head>
+
+<body style=" height: 100%; margin: 0; background-repeat: no-repeat; background-attachment: fixed; background-image: linear-gradient(#99ffae,#ffe374)">
+    <ul class="nav nav-pills" style="font-size: 25px; background-color: #a584ff">
+        <li role="presentation"><a href="{{url_for('main')}}" style="color: white"><strong>Home</strong></a></li>
+        <li role="presentation" class="active"><a href="{{url_for('display_charts')}}" style="color: white"><strong>Chart</strong></a></li>
+        <li role="presentation"><a href="{{url_for('display_lambda')}}" style="color: white"><strong>ShowLambda</strong></a></li>
+        <li role="presentation"><a href="{{url_for('data_clear_form')}}" style="color: white"><strong>DeleteData</strong></a></li>
+        <li role="presentation"><a href="{{url_for('clear_cache_form')}}" style="color: white"><strong>ClearCache</strong></a></li>
+    </ul>
+
+
+    <p class="container text-center" style="font-size:80px; font-family: Arial; color: #473eff"><strong>Chart</strong></p><br>
+
+
+    <div class="col-md-8  col-md-offset-3" id="container" style="max-width:1000px;height:500px;"></div>
+    <script>
+        function decodeJSON(time_stamp) {
+            var time = new DOMParser().parseFromString(time_stamp, "text/html");
+            return time.documentElement.textContent;
+        }
+    
+        var content1 = JSON.parse("{{ content1 }}");
+        var time_stamps = JSON.parse(decodeJSON("{{ time_stamps }}"));
+    
+        var config1 = {
+                title:{
+                    text: 'Worker Numbers'
+                },
+                xAxis:{
+                    title:{
+                        text: 'Time'
+                    },
+                    categories:time_stamps
+                },
+                yAxis:{
+                    title:{
+                        text: 'Number'
+                    },
+                },
+                series:[
+                    {
+                        name:'Worker Number',
+                        data:content1
+                    }
+                ]
+            }
+            var chart1 = Highcharts.chart("container",config1)
+    </script>
+    
+       <div class="col-md-6" id="container1" style="max-width:800px;height:400px; margin-top: 4%; margin-left:100px"></div>
+        <script>
+            var content2 = JSON.parse("{{ content2 }}");
+            var content3 = JSON.parse("{{ content3 }}");
+            var config2 = {
+                title:{
+                    text: 'Miss Rate & Hit Rate'
+                },
+                xAxis:{
+                    title:{
+                        text: 'Time'
+                    },
+                    categories:time_stamps
+                },
+                yAxis:{
+                    title:{
+                        text: 'Rate'
+                    },
+                },
+                series:[
+                    {
+                        name:'Miss Rate',
+                        data:content2
+                    },
+                    {
+                        name:'Hit Rate',
+                        data:content3
+                    }
+                ]
+            }
+            var chart2 = Highcharts.chart("container1",config2)
+        </script>
+
+        <div class="col-md-6" id="container4" style="max-width:800px;height:400px; margin-top: 4%"></div>
+        <script>
+            var content6 = JSON.parse("{{ content6 }}");
+            var config5 = {
+                title:{
+                    text: 'Request Number'
+                },
+                xAxis:{
+                    title:{
+                        text: 'Time'
+                    },
+                    categories:time_stamps
+                },
+                yAxis:{
+                    title:{
+                        text: 'Number'
+                    },
+                },
+                series:[
+                    {
+                        name:'Request Number',
+                        data:content6
+                    }
+                ]
+            }
+            var chart5 = Highcharts.chart("container4",config5)
+        </script>
+
+    
+    <div class="col-md-6" id="container2" style="max-width:800px;height:400px; margin-top: 4%; margin-left: 100px"></div>
+        <script>
+            var content4 = JSON.parse("{{ content4 }}");
+            var config3 = {
+                title:{
+                    text: 'Item Number'
+                },
+                xAxis:{
+                    title:{
+                        text: 'Time'
+                    },
+                    categories:time_stamps
+                },
+                yAxis:{
+                    title:{
+                        text: 'Number'
+                    },
+                },
+                series:[
+                    {
+                        name:'Item Number',
+                        data:content4
+                    }
+                ]
+            }
+            var chart3 = Highcharts.chart("container2",config3)
+        </script>
+    
+        <div class="col-md-6" id="container3" style="max-width:800px;height:400px; margin-top: 4%"></div>
+        <script>
+            var content5 = JSON.parse("{{ content5 }}");
+            var config4 = {
+                title:{
+                    text: 'Total Size'
+                },
+                xAxis:{
+                    title:{
+                        text: 'Time'
+                    },
+                    categories:time_stamps
+                },
+                yAxis:{
+                    title:{
+                        text: 'Size'
+                    },
+                },
+                series:[
+                    {
+                        name:'Total Size',
+                        data:content5
+                    }
+                ]
+            }
+            var chart4 = Highcharts.chart("container3",config4)
+        </script>
+    
+
+
+
+</body>
+</html>

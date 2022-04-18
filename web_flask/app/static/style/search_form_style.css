@@ -1,0 +1,40 @@
+html{
+    background-color: #A3DEFF;
+}
+
+h1{
+    font-family: Arial;
+    font-size: 500%;
+    color: #473eff;
+    text-align: center;
+}
+
+form{
+    margin-left: 30%;
+    font-size: 200%;
+    font-family: Arial;
+}
+
+#photo_name{
+    font-size: 80%;
+    margin-top: 5%;
+    margin-left: 5%;
+    color: gray;
+}
+
+#submit_button{
+    font-size: 100%;
+    background-color: green;
+    margin-top: 10%;
+    margin-left: 10%;
+}
+
+#reset_button{
+    font-size: 100%;
+    background-color: red;
+    margin-left: 20%;
+}
+
+
+
+

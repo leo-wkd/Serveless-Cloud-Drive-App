@@ -1,0 +1,62 @@
+body{
+    background-image: linear-gradient(#A3DEFF,#4eb1ff);
+    background-repeat: no-repeat;
+    background-size: 400% 400%;
+}
+
+h1{
+    font-family: Arial;
+    font-size: 300%;
+    color: #473eff;
+    text-align: center;
+}
+
+#config_form{
+    margin-top: 3%;
+    text-align: center;
+    font-size: 180%;
+}
+
+#clear_form{
+    margin-top: 1%;
+    text-align: center;
+    font-size: 180%;
+}
+
+b{
+    font-family: text-align;
+    text-align: center;
+    color: #666dff;
+    font-size: 100%;
+}
+
+#capacity{
+    margin-bottom: 1%;
+    background-color: yellow;
+    text-align: center;
+    font-size: 100%;
+    margin-top: 1%;
+}
+
+#random{
+    margin-top: 2%;
+    transform: scale(1.6);
+}
+
+#lru{
+    margin-top: 2%;
+    transform: scale(1.6);
+
+}
+
+#send_button{
+    background-color: green;
+    font-size: 80%;
+    margin-top: 1%;
+}
+
+#clear_button{
+    margin-top: 1%;
+    background-color: red;
+    font-size: 80%;
+}
